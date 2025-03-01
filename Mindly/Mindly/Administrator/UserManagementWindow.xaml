@@ -1,0 +1,98 @@
+﻿<Window x:Class="Mindly.Administrator.UserManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Администратор - Управление пользователями"
+        Height="700"
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#FFF5F5F5">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок и поиск -->
+        <TextBlock Text="Список пользователей"
+                   FontSize="22"
+                   Margin="10,0,0,0"
+                   FontWeight="SemiBold"
+                   Foreground="#FF333333"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Grid.Row="0" />
+
+        <TextBox x:Name="txtSearch"
+                 Width="400"
+                 Height="35"
+                 Margin="0,0,10,0"
+                 Padding="10"
+                 FontSize="14"
+                 Tag="Поиск пользователей..."
+                 HorizontalAlignment="Right"
+                 Style="{StaticResource ModernTextBox}"
+                 Grid.Row="0" />
+
+        <!-- Основная таблица -->
+        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="10">
+            <DataGrid x:Name="usersGrid"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      ScrollViewer.CanContentScroll="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ФИО"
+                                      Width="2*"
+                                      Binding="{Binding FullName}" />
+                    <DataGridTextColumn Header="Логин"
+                                      Width="1.5*"
+                                      Binding="{Binding Login}" />
+                    <DataGridTextColumn Header="Роль"
+                                      Width="1*"
+                                      Binding="{Binding Role}" />
+                    <DataGridTextColumn Header="Последний вход"
+                                      Width="1.5*"
+                                      Binding="{Binding LastLogin}" />
+                    <DataGridTemplateColumn Header="Действия" Width="0.8*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Content="✎"
+                                            Style="{StaticResource GridActionButton}"
+                                            Tag="Редактировать" />
+                                    <Button Content="🗑"
+                                            Style="{StaticResource GridActionButton}"
+                                            Margin="5,0,0,0"
+                                            Tag="Удалить" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Панель инструментов -->
+
+        <Button Content="Обновить список"
+                    Style="{StaticResource ModernButton}"
+                    HorizontalAlignment="Stretch"
+                    Margin="10 5 590 0"
+                    Grid.Row="2" />
+
+        <Button Content="Добавить пользователя"
+                    Style="{StaticResource ModernButton}"
+                    HorizontalAlignment="Stretch"
+                    Background="#FF28A745"
+                    Grid.Row="2"
+                    Margin="590 5 10 0" />
+    </Grid>
+</Window>

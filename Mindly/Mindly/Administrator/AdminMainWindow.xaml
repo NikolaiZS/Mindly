@@ -1,0 +1,90 @@
+﻿<Window x:Class="Mindly.Administrator.AdminMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Администратор - Панель управления"
+        Height="600"
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#FFF5F5F5">
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <!-- Заголовок -->
+                <TextBlock Text="Панель администратора"
+                           FontSize="28"
+                           FontWeight="SemiBold"
+                           Foreground="#FF333333"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30" />
+
+                <!-- Группа управления пользователями -->
+                <Border Background="White" Padding="15" CornerRadius="8">
+                    <StackPanel>
+                        <TextBlock Text="Управление пользователями"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Foreground="#FF0078D4"
+                                   Margin="0,0,0,10" />
+
+                        <Button Content="Просмотр всех пользователей"
+                                Style="{StaticResource MenuButton}" />
+
+                        <Button Content="Регистрация новых пользователей"
+                                Style="{StaticResource MenuButton}" />
+
+                        <Button Content="Изменение данных пользователей"
+                                Style="{StaticResource MenuButton}" />
+
+                        <Button Content="Сброс паролей"
+                                Style="{StaticResource MenuButton}" />
+
+                        <Button Content="Удаление пользователей"
+                                Style="{StaticResource MenuButton}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Группа управления правами -->
+                <Border Background="White" Padding="15" CornerRadius="8" Margin="0,20,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Управление правами доступа"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Foreground="#FF0078D4"
+                                   Margin="0,0,0,10" />
+
+                        <Button Content="Назначение руководителей"
+                                Style="{StaticResource MenuButton}" />
+
+                        <Button Content="Выдача прав доступа"
+                                Style="{StaticResource MenuButton}" />
+
+                        <Button Content="Настройка ролей"
+                                Style="{StaticResource MenuButton}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Группа системных функций -->
+                <Border Background="White" Padding="15" CornerRadius="8" Margin="0,20,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Системные настройки"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#FF0078D4"
+                                   Margin="0,0,0,10" />
+
+                        <Button Content="Журнал изменений"
+                                Style="{StaticResource MenuButton}" />
+
+                        <Button Content="Резервное копирование"
+                                Style="{StaticResource MenuButton}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

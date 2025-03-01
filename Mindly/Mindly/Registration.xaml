@@ -1,0 +1,100 @@
+﻿<Window x:Class="Mindly.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Mindly - Регистрация"
+        Height="620"
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#FFF5F5F5">
+
+    <Grid VerticalAlignment="Center">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel VerticalAlignment="Center" Margin="20">
+                <TextBlock Text="Регистрация"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="#FF333333"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20" />
+                <TextBlock Text="Имя"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#FF555555"
+                           HorizontalAlignment="Left"
+                           Margin="30,0,0,0" />
+                <TextBox x:Name="txtFirstName"
+                        Width="300"
+                        Style="{StaticResource ModernTextBox}"
+                        Tag="Имя" />
+                <TextBlock Text="Фамилия"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#FF555555"
+                           HorizontalAlignment="Left"
+                           Margin="30,0,0,0" />
+                <TextBox x:Name="txtLastName"
+                        Width="300"
+                        Style="{StaticResource ModernTextBox}"
+                        Tag="Фамилия" />
+                <TextBlock Text="Логин"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#FF555555"
+                           HorizontalAlignment="Left"
+                           Margin="30,0,0,0" />
+                <TextBox x:Name="txtLogin"
+                        Width="300"
+                        Style="{StaticResource ModernTextBox}"
+                        Tag="Логин" />
+                <TextBlock Text="Пароль"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#FF555555"
+                           HorizontalAlignment="Left"
+                           Margin="30,0,0,0" />
+                <PasswordBox x:Name="txtPassword"
+                            Width="300"
+                            Style="{StaticResource ModernPasswordBox}"
+                            Tag="Пароль" />
+                <TextBlock Text="Повторите пароль"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#FF555555"
+                           HorizontalAlignment="Left"
+                           Margin="30,0,0,0" />
+                <PasswordBox x:Name="txtConfirmPassword"
+                            Width="300"
+                            Style="{StaticResource ModernPasswordBox}"
+                            Tag="Подтвердите пароль" />
+                <TextBlock Text="Выберете желаемый курс"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#FF555555"
+                           HorizontalAlignment="Left"
+                           Margin="30,0,0,0" />
+                <ComboBox x:Name="cbxSelectCourse"
+                          Width="300"
+                          Style="{StaticResource ModernComboBox}"
+                          Tag="Желаемый курс" />
+                <Button x:Name="btnRegister"
+                        Content="Зарегистрироваться"
+                        Width="300"
+                        Margin="0 5 0 0"
+                        Style="{StaticResource ModernButton}" />
+
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="#FF0078D4"
+                           Cursor="Hand"
+                           TextDecorations="Underline"
+                           Margin="0,10,0,0">
+                    <Run Text="Уже есть аккаунт? " />
+                    <Hyperlink>Войти</Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
