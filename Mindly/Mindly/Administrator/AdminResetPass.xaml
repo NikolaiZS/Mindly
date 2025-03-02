@@ -10,7 +10,6 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="#FFF5F5F5">
-
     <Grid VerticalAlignment="Center">
         <StackPanel VerticalAlignment="Center" Margin="20">
             <TextBlock Text="Сброс пароля"
@@ -19,8 +18,6 @@
                        Foreground="#FF333333"
                        HorizontalAlignment="Center"
                        Margin="0,0,0,20" />
-
-            <!-- Выбор пользователя -->
             <TextBlock Text="Пользователь"
                        FontSize="14"
                        FontWeight="SemiBold"
@@ -32,8 +29,6 @@
                      Style="{StaticResource ModernComboBox}"
                      Tag="Выберите пользователя"
                      Margin="0,0,0,10" />
-
-            <!-- Новый пароль -->
             <TextBlock Text="Новый пароль"
                       FontSize="14"
                       FontWeight="SemiBold"
@@ -45,8 +40,6 @@
                         Style="{StaticResource ModernPasswordBox}"
                         Tag="Введите новый пароль"
                         Margin="0,0,0,15" />
-
-            <!-- Кнопка сброса -->
             <Button x:Name="btnResetPassword"
                     Content="Сбросить пароль"
                     Width="300"

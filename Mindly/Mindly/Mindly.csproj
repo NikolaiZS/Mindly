@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Director\" />
     <Folder Include="Student\" />
     <Folder Include="Teacher\" />
   </ItemGroup>
