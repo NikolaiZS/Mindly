@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Администратор - Управление пользователями"
+        Title="Администратор - Изменение пользователей"
         Height="700"
         Width="1200"
         WindowStartupLocation="CenterScreen"
@@ -17,19 +17,36 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <!-- Заголовок и поиск -->
+        <Button Style="{StaticResource BackButtonStyle}"
+                Content="Назад"
+                Grid.Row="0"
+                Grid.Column="0"
+                Click="BackButton_Click" />
         <TextBlock Text="Список пользователей"
                    FontSize="22"
-                   Margin="10,0,0,0"
+                   Margin="0,0,0,0"
                    FontWeight="SemiBold"
                    Foreground="#FF333333"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Grid.Row="0" />
-
+                   HorizontalAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="1" />
+        <TextBlock Text="Поиск"
+                   FontSize="16"
+                   Margin="0,-10,10,0"
+                   Foreground="#FF333333"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Grid.Row="0"
+                   Grid.Column="2" />
         <TextBox x:Name="txtSearch"
-                 Width="400"
+                 Width="300"
                  Height="35"
                  Margin="0,0,10,0"
                  Padding="10"
@@ -37,10 +54,11 @@
                  Tag="Поиск пользователей..."
                  HorizontalAlignment="Right"
                  Style="{StaticResource ModernTextBox}"
-                 Grid.Row="0" />
+                 Grid.Row="0"
+                 Grid.Column="2" />
 
         <!-- Основная таблица -->
-        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="10">
+        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="10" Grid.ColumnSpan="3">
             <DataGrid x:Name="usersGrid"
                       AutoGenerateColumns="False"
                       HeadersVisibility="Column"
@@ -58,9 +76,6 @@
                     <DataGridTextColumn Header="Роль"
                                       Width="1*"
                                       Binding="{Binding Role}" />
-                    <DataGridTextColumn Header="Последний вход"
-                                      Width="1.5*"
-                                      Binding="{Binding LastLogin}" />
                     <DataGridTemplateColumn Header="Действия" Width="0.8*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -85,14 +100,24 @@
         <Button Content="Обновить список"
                     Style="{StaticResource ModernButton}"
                     HorizontalAlignment="Stretch"
-                    Margin="10 5 590 0"
-                    Grid.Row="2" />
+                    Margin="10 5 0 0"
+                    Grid.Row="2"
+                    Grid.Column="0" />
 
-        <Button Content="Добавить пользователя"
+        <Button Content="Изменить"
                     Style="{StaticResource ModernButton}"
                     HorizontalAlignment="Stretch"
                     Background="#FF28A745"
                     Grid.Row="2"
-                    Margin="590 5 10 0" />
+                    Margin="5 5 5 0"
+                    Grid.Column="1" />
+
+        <Button Content="Удалить"
+                Style="{StaticResource ModernButton}"
+                HorizontalAlignment="Stretch"
+                Background="Red"
+                Grid.Row="2"
+                Margin="0 5 10 0"
+                Grid.Column="2" />
     </Grid>
 </Window>

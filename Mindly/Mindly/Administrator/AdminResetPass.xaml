@@ -1,0 +1,61 @@
+﻿<Window x:Class="Mindly.Administrator.AdminPasswordReset"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Mindly - Сброс пароля"
+        Height="400"
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#FFF5F5F5">
+
+    <Grid VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" Margin="20">
+            <TextBlock Text="Сброс пароля"
+                       FontSize="22"
+                       FontWeight="SemiBold"
+                       Foreground="#FF333333"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20" />
+
+            <!-- Выбор пользователя -->
+            <TextBlock Text="Пользователь"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="#FF555555"
+                       HorizontalAlignment="Left"
+                       Margin="30,0,0,0" />
+            <ComboBox x:Name="cbUsers"
+                     Width="300"
+                     Style="{StaticResource ModernComboBox}"
+                     Tag="Выберите пользователя"
+                     Margin="0,0,0,10" />
+
+            <!-- Новый пароль -->
+            <TextBlock Text="Новый пароль"
+                      FontSize="14"
+                      FontWeight="SemiBold"
+                      Foreground="#FF555555"
+                      HorizontalAlignment="Left"
+                      Margin="30,0,0,0" />
+            <PasswordBox x:Name="txtNewPassword"
+                        Width="300"
+                        Style="{StaticResource ModernPasswordBox}"
+                        Tag="Введите новый пароль"
+                        Margin="0,0,0,15" />
+
+            <!-- Кнопка сброса -->
+            <Button x:Name="btnResetPassword"
+                    Content="Сбросить пароль"
+                    Width="300"
+                    Style="{StaticResource ModernButton}" />
+            <Button Style="{StaticResource BackButtonStyle}"
+                    Content="Назад"
+                    Width="300"
+                    Margin="20,10"
+                    Click="BackButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
