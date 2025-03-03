@@ -17,11 +17,15 @@ namespace Mindly.Administrator
     /// <summary>
     /// Логика взаимодействия для AdminResetPass.xaml
     /// </summary>
-    public partial class AdminResetPass : Window
+    public partial class AdminPasswordReset : Window
     {
-        public AdminResetPass()
+        public AdminPasswordReset()
         {
             InitializeComponent();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

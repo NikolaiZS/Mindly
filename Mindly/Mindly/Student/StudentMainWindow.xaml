@@ -35,6 +35,10 @@
                                 Content="Просмотр оценок"
                                 Style="{StaticResource MenuButton}"
                                 Margin="0,5" />
+                        <Button x:Name="TestsButton"
+                                Content="Прохождение тестов и зачетов"
+                                Style="{StaticResource MenuButton}"
+                                Margin="0,5" />
                         <Button x:Name="TestResultsButton"
                                 Content="Просмотр результатов тестирования"
                                 Style="{StaticResource MenuButton}"

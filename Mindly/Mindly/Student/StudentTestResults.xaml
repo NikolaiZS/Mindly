@@ -75,16 +75,6 @@
                     <DataGridTextColumn Header="Статус"
                                      Width="1*"
                                      Binding="{Binding Status}" />
-                    <DataGridTemplateColumn Header="Детали" Width="1*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="🔍"
-                                        Style="{StaticResource GridActionButton}"
-                                        Tag="Просмотр деталей"
-                                        Click="ViewDetails_Click" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

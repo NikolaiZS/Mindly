@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Mindly.Administrator
+namespace Mindly.Student
 {
     /// <summary>
-    /// Логика взаимодействия для AdminNewUserReg.xaml
+    /// Логика взаимодействия для StudentTheoryWindow.xaml
     /// </summary>
-    public partial class AdminNewUserReg : Window
+    public partial class StudentTheoryWindow : Window
     {
-        public AdminNewUserReg()
+        public StudentTheoryWindow()
         {
             InitializeComponent();
         }
