@@ -26,13 +26,17 @@
                                    FontWeight="SemiBold"
                                    Foreground="#FF0078D4"
                                    Margin="0,0,0,10" />
-                        <Button Content="Изменение пользователей"
+                        <Button x:Name="EditUsersButton"
+                                Content="Изменение пользователей"
                                 Style="{StaticResource MenuButton}" />
-                        <Button Content="Назначение руководителей"
+                        <Button x:Name="AssignManagersButton"
+                                Content="Назначение руководителей"
                                 Style="{StaticResource MenuButton}" />
-                        <Button Content="Регистрация новых пользователей"
+                        <Button x:Name="RegisterNewUsersButton"
+                                Content="Регистрация новых пользователей"
                                 Style="{StaticResource MenuButton}" />
-                        <Button Content="Сброс паролей"
+                        <Button x:Name="ResetPasswordsButton"
+                                Content="Сброс паролей"
                                 Style="{StaticResource MenuButton}" />
                     </StackPanel>
                 </Border>

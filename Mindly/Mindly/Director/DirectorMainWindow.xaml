@@ -27,10 +27,12 @@
                                FontWeight="SemiBold"
                                Foreground="#FF0078D4"
                                Margin="0,0,0,10" />
-                        <Button Content="Закрепить учителя за студентом"
-                            Style="{StaticResource MenuButton}" />
-                        <Button Content="Редактирование занятий"
-                            Style="{StaticResource MenuButton}" />
+                        <Button x:Name="AssignTeacherToStudentButton"
+                                Content="Закрепить учителя за студентом"
+                                Style="{StaticResource MenuButton}" />
+                        <Button x:Name="EditLessonsButton"
+                                Content="Редактирование занятий"
+                                Style="{StaticResource MenuButton}" />
                     </StackPanel>
                 </Border>
             </StackPanel>
