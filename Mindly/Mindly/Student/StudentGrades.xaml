@@ -1,0 +1,93 @@
+﻿<Window x:Class="Mindly.Student.StudentGrades"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mindly.Student"
+        mc:Ignorable="d"
+        Title="Mindly - Просмотр оценок"
+        Height="700"
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#FFF5F5F5">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Style="{StaticResource BackButtonStyle}"
+                Content="Назад"
+                Grid.Row="0"
+                Grid.Column="0"
+                Click="BackButton_Click" />
+        <TextBlock Text="Мои оценки"
+                   FontSize="22"
+                   FontWeight="SemiBold"
+                   Foreground="#FF333333"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="1" />
+        <TextBlock Text="Поиск"
+                   FontSize="16"
+                   Margin="0,-10,10,0"
+                   Foreground="#FF333333"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Grid.Row="0"
+                   Grid.Column="2" />
+        <TextBox x:Name="txtSearch"
+                 Width="250"
+                 Style="{StaticResource ModernTextBox}"
+                 Tag="Поиск по предмету..."
+                 HorizontalAlignment="Right"
+                 Grid.Row="0"
+                 Grid.Column="2" />
+        <Border Grid.Row="1"
+                Background="White"
+                CornerRadius="8"
+                Padding="10"
+                Margin="0,15,0,0"
+                Grid.ColumnSpan="3">
+            <DataGrid x:Name="gradesGrid"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Предмет"
+                                     Width="2*"
+                                     Binding="{Binding Subject}" />
+                    <DataGridTextColumn Header="Дата"
+                                     Width="1.5*"
+                                     Binding="{Binding Date}" />
+                    <DataGridTextColumn Header="Тип работы"
+                                     Width="1.5*"
+                                     Binding="{Binding WorkType}" />
+                    <DataGridTextColumn Header="Оценка"
+                                     Width="1*"
+                                     Binding="{Binding Grade}" />
+                    <DataGridTextColumn Header="Комментарий"
+                                     Width="3*"
+                                     Binding="{Binding Comment}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        <Button x:Name="btnRefresh"
+                Content="Обновить"
+                Style="{StaticResource ModernButton}"
+                HorizontalAlignment="Stretch"
+                Margin="10 5 10 0"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3" />
+    </Grid>
+</Window>
