@@ -26,6 +26,9 @@ namespace Mindly.Student
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            StudentMainWindow smw = new StudentMainWindow();
+            smw.Show();
+            this.Close();
         }
     }
 }

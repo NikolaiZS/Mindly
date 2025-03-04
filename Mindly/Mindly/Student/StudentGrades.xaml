@@ -69,15 +69,9 @@
                     <DataGridTextColumn Header="Дата"
                                      Width="1.5*"
                                      Binding="{Binding Date}" />
-                    <DataGridTextColumn Header="Тип работы"
-                                     Width="1.5*"
-                                     Binding="{Binding WorkType}" />
                     <DataGridTextColumn Header="Оценка"
                                      Width="1*"
                                      Binding="{Binding Grade}" />
-                    <DataGridTextColumn Header="Комментарий"
-                                     Width="3*"
-                                     Binding="{Binding Comment}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

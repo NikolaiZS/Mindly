@@ -3,6 +3,7 @@ using Supabase.Postgrest.Models;
 
 namespace Mindly.Models
 {
+    [Table("grades")]
     public class Grades : BaseModel
     {
         [PrimaryKey("id")]

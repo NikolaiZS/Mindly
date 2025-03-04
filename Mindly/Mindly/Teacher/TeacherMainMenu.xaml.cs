@@ -23,5 +23,19 @@ namespace Mindly.Teacher
         {
             InitializeComponent();
         }
+
+        private void AssignGradesButton_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherGrades tg = new TeacherGrades();
+            tg.Show();
+            this.Close();
+        }
+
+        private void AssignExamsButton_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherExam te = new TeacherExam();
+            te.Show();
+            this.Close();
+        }
     }
 }

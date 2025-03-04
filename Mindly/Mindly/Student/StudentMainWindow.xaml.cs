@@ -37,5 +37,19 @@ namespace Mindly.Student
             stl.Show();
             this.Close();
         }
+
+        private void GradesButton_Click(object sender, RoutedEventArgs e)
+        {
+            StudentGrades sg = new StudentGrades();
+            sg.Show();
+            this.Close();
+        }
+
+        private void TestResultsButton_Click(object sender, RoutedEventArgs e)
+        {
+            StudentTestResults str = new StudentTestResults();
+            str.Show();
+            this.Close();
+        }
     }
 }

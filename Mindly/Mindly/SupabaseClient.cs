@@ -6,6 +6,8 @@ using Mindly.Models;
 using Mindly.Student;
 using Supabase.Gotrue;
 using Supabase.Interfaces;
+using static Mindly.Student.StudentGrades;
+using Mindly.Teacher;
 
 namespace Mindly
 {
@@ -159,7 +161,7 @@ namespace Mindly
                     break;
 
                 case 2: // Учитель
-                    //window = new TeacherMainWindow();
+                    window = new TeacherMainMenu();
                     break;
 
                 case 3: // Руководитель
@@ -221,6 +223,94 @@ namespace Mindly
                 Console.WriteLine($"Ошибка при загрузке занятий: {ex.Message}");
                 throw; // Повторно выбрасываем исключение для обработки на уровне выше
             }
+        }
+
+        public async Task<List<GradeViewModel>> GetGradesForStudentAsync(int studentId)
+        {
+            var client = App.SupabaseService.GetClient();
+
+            // Получаем оценки студента
+            var gradesResponse = await client
+                .From<Grades>()
+                .Select("id, course_id, grade, created_at")
+                .Filter("student_id", Supabase.Postgrest.Constants.Operator.Equals, studentId)
+                .Get();
+
+            if (gradesResponse.Models == null || !gradesResponse.Models.Any())
+            {
+                return new List<GradeViewModel>(); // Если оценок нет, возвращаем пустой список
+            }
+
+            // Получаем ID курсов
+            var courseIds = gradesResponse.Models
+                .Select(g => g.course_id)
+                .Distinct()
+                .ToList();
+
+            // Получаем названия курсов
+            var coursesResponse = await client
+                .From<Courses>()
+                .Select("id, name")
+                .Filter("id", Supabase.Postgrest.Constants.Operator.In, courseIds)
+                .Get();
+
+            var courses = coursesResponse.Models?.ToDictionary(c => c.id, c => c.name) ?? new Dictionary<int, string>();
+
+            // Создаем список GradeViewModel
+            var grades = gradesResponse.Models
+                .Select(g => new GradeViewModel
+                {
+                    Subject = courses.ContainsKey(g.course_id) ? courses[g.course_id] : "Неизвестный курс",
+                    Date = g.created_at,
+                    Grade = g.grade
+                })
+                .ToList();
+
+            return grades;
+        }
+
+        public async Task<List<TestResultViewModel>> GetTestResultsForStudentAsync(int studentId)
+        {
+            var client = App.SupabaseService.GetClient();
+
+            // Получаем результаты тестов студента
+            var testResultsResponse = await client
+                .From<TestResults>()
+                .Select("id, test_id, score, updated_at")
+                .Filter("student_id", Supabase.Postgrest.Constants.Operator.Equals, studentId)
+                .Get();
+
+            if (testResultsResponse.Models == null || !testResultsResponse.Models.Any())
+            {
+                return new List<TestResultViewModel>(); // Если результатов нет, возвращаем пустой список
+            }
+
+            // Получаем ID тестов
+            var testIds = testResultsResponse.Models
+                .Select(tr => tr.test_id)
+                .Distinct()
+                .ToList();
+
+            // Получаем названия тестов
+            var testsResponse = await client
+                .From<Tests>()
+                .Select("id, title")
+                .Filter("id", Supabase.Postgrest.Constants.Operator.In, testIds)
+                .Get();
+
+            var tests = testsResponse.Models?.ToDictionary(t => t.id, t => t.title) ?? new Dictionary<int, string>();
+
+            // Создаем список TestResultViewModel
+            var testResults = testResultsResponse.Models
+                .Select(tr => new TestResultViewModel
+                {
+                    TestTitle = tests.ContainsKey(tr.test_id) ? tests[tr.test_id] : "Неизвестный тест",
+                    UpdatedAt = tr.updated_at,
+                    Score = tr.score
+                })
+                .ToList();
+
+            return testResults;
         }
     }
 }

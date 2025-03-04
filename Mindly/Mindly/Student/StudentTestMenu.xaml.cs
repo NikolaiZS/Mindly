@@ -34,71 +34,8 @@ namespace Mindly.Student
             {
                 Title = "Основы математики",
                 Description = "Тест по базовым математическим операциям",
-                QuestionCount = 20,
+                QuestionCount = 5,
                 TimeLimit = 30
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
-            },
-            new Test
-            {
-                Title = "История Древнего мира",
-                Description = "Тестирование знаний по древней истории",
-                QuestionCount = 15,
-                TimeLimit = 25
             }
         };
 
@@ -112,20 +49,16 @@ namespace Mindly.Student
             this.Close(); //Я твою мать ногами пиздил за такие приколы
         }
 
+        // Пример ну ты понял работай давай
         private void StartTest_Click(object sender, RoutedEventArgs e)
         {
+            //var selectedTest = (sender as Button)?.DataContext as Test;
+            //if (selectedTest != null)
+            //{
+            //    var testWindow = new StudentTestWindow(selectedTest);
+            //    testWindow.ShowDialog();
+            //}
         }
-
-        // Пример ну ты понял работай давай
-        /*private void StartTest_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedTest = (sender as Button)?.DataContext as Test;
-            if (selectedTest != null)
-            {
-                var testWindow = new StudentTestWindow(selectedTest);
-                testWindow.ShowDialog();
-            }
-        }*/
     }
 
     // Модель данных

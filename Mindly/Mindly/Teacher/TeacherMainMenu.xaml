@@ -30,11 +30,11 @@
 
                         <Button x:Name="AssignGradesButton"
                                 Content="Назначение оценок"
-                                Style="{StaticResource MenuButton}" />
+                                Style="{StaticResource MenuButton}" Click="AssignGradesButton_Click" />
 
                         <Button x:Name="AssignExamsButton"
                                 Content="Назначение экзаменов и зачетов"
-                                Style="{StaticResource MenuButton}" />
+                                Style="{StaticResource MenuButton}" Click="AssignExamsButton_Click" />
 
                         <Button x:Name="AssignTestsButton"
                                 Content="Назначение тестов"

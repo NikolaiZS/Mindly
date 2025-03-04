@@ -57,24 +57,21 @@
                 Margin="0,15,0,0"
                 Grid.ColumnSpan="3">
             <DataGrid x:Name="testResultsGrid"
-                      AutoGenerateColumns="False"
-                      HeadersVisibility="Column"
-                      IsReadOnly="True"
-                      SelectionMode="Single"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+          AutoGenerateColumns="False"
+          HeadersVisibility="Column"
+          IsReadOnly="True"
+          SelectionMode="Single"
+          ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Тест"
-                                     Width="2*"
-                                     Binding="{Binding TestName}" />
+                         Width="2*"
+                         Binding="{Binding TestTitle}" />
                     <DataGridTextColumn Header="Дата прохождения"
-                                     Width="1.5*"
-                                     Binding="{Binding TestDate}" />
+                         Width="1.5*"
+                         Binding="{Binding UpdatedAt, StringFormat=dd.MM.yyyy HH:mm}" />
                     <DataGridTextColumn Header="Результат"
-                                     Width="1*"
-                                     Binding="{Binding Score}" />
-                    <DataGridTextColumn Header="Статус"
-                                     Width="1*"
-                                     Binding="{Binding Status}" />
+                         Width="1*"
+                         Binding="{Binding Score}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
