@@ -107,7 +107,9 @@ namespace Mindly.Student
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            StudentMainWindow smw = new StudentMainWindow();
+            smw.Show();
+            this.Close(); //Я твою мать ногами пиздил за такие приколы
         }
 
         private void StartTest_Click(object sender, RoutedEventArgs e)

@@ -30,7 +30,7 @@
                         <Button x:Name="TheoryLessonsButton"
                                 Content="Просмотр теоретических занятий"
                                 Style="{StaticResource MenuButton}"
-                                Margin="0,5" />
+                                Margin="0,5" Click="TheoryLessonsButton_Click" />
                         <Button x:Name="GradesButton"
                                 Content="Просмотр оценок"
                                 Style="{StaticResource MenuButton}"
@@ -38,7 +38,7 @@
                         <Button x:Name="TestsButton"
                                 Content="Прохождение тестов и зачетов"
                                 Style="{StaticResource MenuButton}"
-                                Margin="0,5" />
+                                Margin="0,5" Click="TestsButton_Click" />
                         <Button x:Name="TestResultsButton"
                                 Content="Просмотр результатов тестирования"
                                 Style="{StaticResource MenuButton}"

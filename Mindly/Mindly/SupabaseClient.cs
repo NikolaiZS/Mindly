@@ -137,6 +137,8 @@ namespace Mindly
                 // Получаем роль пользователя
                 var roleId = userResponse.role_id;
 
+                CurrentUser.CurrentUserId = userResponse.id;
+
                 // Открываем соответствующее окно в зависимости от роли
                 OpenRoleBasedWindow(roleId);
             }
@@ -179,6 +181,46 @@ namespace Mindly
             // Открываем новое окно
             window.Show();
             Application.Current.MainWindow = window;
+        }
+
+        public async Task<List<Lessons>> GetStudentLessonsAsync(int studentId)
+        {
+            var client = App.SupabaseService.GetClient();
+
+            try
+            {
+                // Шаг 1: Получаем список курсов студента
+                var assignmentsResponse = await client
+                    .From<Assignments>()
+                    .Select("course_id")
+                    .Filter("student_id", Supabase.Postgrest.Constants.Operator.Equals, studentId)
+                    .Get();
+
+                if (assignmentsResponse.Models == null || !assignmentsResponse.Models.Any())
+                {
+                    return new List<Lessons>(); // Если курсов нет, возвращаем пустой список
+                }
+
+                // Извлекаем ID курсов
+                var courseIds = assignmentsResponse.Models
+                    .Select(a => a.course_id)
+                    .ToList();
+
+                // Шаг 2: Получаем занятия для этих курсов
+                var lessonsResponse = await client
+                    .From<Lessons>()
+                    .Select("id, title, description, date, course_id")
+                    .Filter("course_id", Supabase.Postgrest.Constants.Operator.In, courseIds)
+                    .Get();
+
+                return lessonsResponse.Models?.ToList() ?? new List<Lessons>();
+            }
+            catch (Exception ex)
+            {
+                // Логируем ошибку
+                Console.WriteLine($"Ошибка при загрузке занятий: {ex.Message}");
+                throw; // Повторно выбрасываем исключение для обработки на уровне выше
+            }
         }
     }
 }

@@ -92,7 +92,7 @@
                            TextDecorations="Underline"
                            Margin="0,10,0,0">
                     <Run Text="Уже есть аккаунт? " />
-                    <Hyperlink>Войти</Hyperlink>
+                    <Hyperlink Click="backToAuth_Click">Войти</Hyperlink>
                 </TextBlock>
             </StackPanel>
         </ScrollViewer>

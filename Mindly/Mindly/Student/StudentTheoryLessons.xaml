@@ -59,32 +59,18 @@
             <DataGrid x:Name="lessonsGrid"
                       AutoGenerateColumns="False"
                       HeadersVisibility="Column"
-                      IsReadOnly="True"
                       SelectionMode="Single"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Название"
                                      Width="2*"
-                                     Binding="{Binding Title}" />
-                    <DataGridTextColumn Header="Преподаватель"
+                                     Binding="{Binding title}" />
+                    <DataGridTextColumn Header="Ссылка"
                                      Width="1.5*"
-                                     Binding="{Binding Instructor}" />
+                                     Binding="{Binding description}" />
                     <DataGridTextColumn Header="Дата проведения"
                                      Width="1.5*"
-                                     Binding="{Binding Date}" />
-                    <DataGridTextColumn Header="Статус"
-                                     Width="1*"
-                                     Binding="{Binding Status}" />
-                    <DataGridTemplateColumn Header="Материалы" Width="1*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="📄"
-                                        Style="{StaticResource GridActionButton}"
-                                        Tag="Открыть материалы"
-                                        Click="OpenMaterials_Click" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                                     Binding="{Binding date}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

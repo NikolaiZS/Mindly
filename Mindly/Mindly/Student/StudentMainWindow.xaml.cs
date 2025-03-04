@@ -23,5 +23,19 @@ namespace Mindly.Student
         {
             InitializeComponent();
         }
+
+        private void TestsButton_Click(object sender, RoutedEventArgs e)
+        {
+            StudentTestMenu stm = new StudentTestMenu();
+            stm.Show();
+            this.Close();
+        }
+
+        private void TheoryLessonsButton_Click(object sender, RoutedEventArgs e)
+        {
+            StudentTheoryLessons stl = new StudentTheoryLessons();
+            stl.Show();
+            this.Close();
+        }
     }
 }

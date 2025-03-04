@@ -77,12 +77,19 @@ namespace Mindly
             await client.InitializeAsync();
             try
             {
-                await App.SupabaseService.RegisterStudentWithCourseAsync(username, password, firstname, lastname, 1, courseid, 5);
+                await App.SupabaseService.RegisterStudentWithCourseAsync(username, password, firstname, lastname, 1, courseid + 1, 5);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка регистрации: {ex.Message}");
             }
+        }
+
+        private void backToAuth_Click(object sender, RoutedEventArgs e)
+        {
+            Authorization auth = new Authorization();
+            auth.Show();
+            this.Close();
         }
     }
 }
