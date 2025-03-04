@@ -40,7 +40,7 @@ namespace Mindly
             return _client;
         }
 
-        public async Task RegisterStudentWithCourseAsync(string username, string password, string firstName, string lastName, int roleId, int courseId)
+        public async Task RegisterStudentWithCourseAsync(string username, string password, string firstName, string lastName, int roleId, int courseId, int teacher_id)
         {
             var client = App.SupabaseService.GetClient();
 
@@ -72,7 +72,8 @@ namespace Mindly
                     var assignment = new Assignments
                     {
                         student_id = newUser.id,
-                        course_id = courseId
+                        course_id = courseId,
+                        teacher_id = teacher_id
                     };
 
                     var assignmentResponse = await client

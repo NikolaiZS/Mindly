@@ -10,8 +10,6 @@ namespace Mindly
     /// </summary>
     public partial class Registration : Window
     {
-        private SupabaseClient _authClient;
-
         public Registration()
         {
             InitializeComponent();
@@ -70,15 +68,16 @@ namespace Mindly
 
         private async void btnRegister_Click(object sender, RoutedEventArgs e)
         {
+            var client = App.SupabaseService.GetClient();
             string firstname = txtFirstName.Text;
             string lastname = txtLastName.Text;
             string username = txtLogin.Text;
             string password = HashPassword(txtPassword.Password);
             int courseid = cbxSelectCourse.SelectedIndex;
-            await _authClient.InitializeAsync();
+            await client.InitializeAsync();
             try
             {
-                await _authClient.RegisterStudentWithCourseAsync(username, password, firstname, lastname, 1, courseid);
+                await App.SupabaseService.RegisterStudentWithCourseAsync(username, password, firstname, lastname, 1, courseid, 5);
             }
             catch (Exception ex)
             {
