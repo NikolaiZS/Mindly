@@ -43,7 +43,7 @@
                     Content="Войти"
                     Width="250"
                     Margin="0 5 0 0"
-                    Style="{StaticResource ModernButton}" />
+                    Style="{StaticResource ModernButton}" Click="btnLogin_Click" />
             <Button x:Name="btnRegister"
                     Content="Регистрация"
                     Width="250"

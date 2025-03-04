@@ -18,5 +18,20 @@ namespace Mindly
             reg.Show();
             this.Close();
         }
+
+        private async void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string username = txtUsername.Text;
+            string password = txtPassword.Password;
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Введите email и пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Вызов метода авторизации
+            await App.SupabaseService.LoginAsync(username, password);
+        }
     }
 }

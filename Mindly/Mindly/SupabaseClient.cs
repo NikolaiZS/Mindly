@@ -1,6 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Mindly.Administrator;
+using Mindly.Director;
 using Mindly.Models;
+using Mindly.Student;
 using Supabase.Gotrue;
 using Supabase.Interfaces;
 
@@ -110,6 +113,72 @@ namespace Mindly
             .Get();
 
             return response.Models?.ToList() ?? new List<Courses>();
+        }
+
+        public async Task LoginAsync(string username, string password)
+        {
+            var client = App.SupabaseService.GetClient();
+
+            try
+            {
+                // Получаем информацию о пользователе из таблицы Users
+                var userResponse = await client
+                    .From<Users>()
+                    .Select("id, role_id")
+                    .Filter("username", Supabase.Postgrest.Constants.Operator.Equals, username)
+                    .Single();
+
+                if (userResponse == null)
+                {
+                    MessageBox.Show("Пользователь не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Получаем роль пользователя
+                var roleId = userResponse.role_id;
+
+                // Открываем соответствующее окно в зависимости от роли
+                OpenRoleBasedWindow(roleId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при авторизации: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void OpenRoleBasedWindow(int roleId)
+        {
+            Window window = null;
+
+            switch (roleId)
+            {
+                case 1: // Студент
+                    window = new StudentMainWindow();
+                    break;
+
+                case 2: // Учитель
+                    //window = new TeacherMainWindow();
+                    break;
+
+                case 3: // Руководитель
+                    window = new DirectorMainWindow();
+                    break;
+
+                case 4: // Администратор
+                    window = new AdminMainWindow();
+                    break;
+
+                default:
+                    MessageBox.Show("Роль пользователя не определена.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+            }
+
+            // Закрываем текущее окно (окно авторизации)
+            Application.Current.MainWindow?.Close();
+
+            // Открываем новое окно
+            window.Show();
+            Application.Current.MainWindow = window;
         }
     }
 }
