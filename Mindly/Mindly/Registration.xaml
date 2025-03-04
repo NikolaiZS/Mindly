@@ -83,7 +83,7 @@
                 <Button x:Name="btnRegister"
                         Content="Зарегистрироваться"
                         Width="300"
-                        Margin="0 5 0 0"
+                        Margin="0 20 0 0"
                         Style="{StaticResource ModernButton}" Click="btnRegister_Click" />
 
                 <TextBlock HorizontalAlignment="Center"

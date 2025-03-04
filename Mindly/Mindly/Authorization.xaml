@@ -42,19 +42,13 @@
             <Button x:Name="btnLogin"
                     Content="Войти"
                     Width="250"
-                    Margin="0 5 0 0"
+                    Margin="0 20 0 0"
                     Style="{StaticResource ModernButton}" Click="btnLogin_Click" />
             <Button x:Name="btnRegister"
                     Content="Регистрация"
                     Width="250"
                     Margin="0 5 0 0"
                     Style="{StaticResource ModernButton}" Click="btnRegister_Click" />
-            <TextBlock Text="Забыли пароль?"
-                       Foreground="#FF0078D4"
-                       HorizontalAlignment="Center"
-                       Margin="0,10,0,0"
-                       Cursor="Hand"
-                       TextDecorations="Underline" />
         </StackPanel>
     </Grid>
 </Window>
