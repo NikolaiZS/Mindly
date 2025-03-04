@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace Mindly.Teacher
+{
+    /// <summary>
+    /// Логика взаимодействия для TeacherTestQuestions.xaml
+    /// </summary>
+    public partial class TeacherTestQuestions : Window
+    {
+        public TeacherTestQuestions()
+        {
+            InitializeComponent();
+            LoadSampleQuestions();
+        }
+
+        private void LoadSampleQuestions()
+        {
+            var questions = new[]
+            {
+            new
+            {
+                QuestionText = "Что такое ООП?",
+                Type = "Текстовый ответ"
+            },
+            new
+            {
+                QuestionText = "Выберите правильные варианты ответа:",
+                Type = "Множественный выбор"
+            }
+        };
+
+            QuestionsList.ItemsSource = questions;
+        }
+
+        private void AddQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            // Логика добавления нового вопроса
+            var newQuestion = new
+            {
+                QuestionText = "Новый вопрос",
+                Type = "Текстовый ответ"
+            };
+
+            var list = new ArrayList((ICollection)QuestionsList.ItemsSource);
+            list.Add(newQuestion);
+            QuestionsList.ItemsSource = list;
+        }
+
+        private void EditQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            dynamic question = button.DataContext;
+            // Логика редактирования вопроса
+        }
+
+        private void DeleteQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            dynamic question = button.DataContext;
+
+            var list = new ArrayList((ICollection)QuestionsList.ItemsSource);
+            list.Remove(question);
+            QuestionsList.ItemsSource = list;
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+    }
+}

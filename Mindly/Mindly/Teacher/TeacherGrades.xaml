@@ -1,0 +1,84 @@
+﻿<Window x:Class="Mindly.Teacher.TeacherGrades"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mindly.Teacher"
+        mc:Ignorable="d"
+        Title="Mindly - Распределение оценок"
+        Height="440"
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#FFF5F5F5">
+
+    <Grid VerticalAlignment="Center">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel VerticalAlignment="Center" Margin="20">
+                <TextBlock Text="Выставление оценок"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       Foreground="#FF333333"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20" />
+
+                <!-- Выбор студента -->
+                <TextBlock Text="Студент"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="#FF555555"
+                       HorizontalAlignment="Left"
+                       Margin="30,0,0,0" />
+                <ComboBox x:Name="cbxStudent"
+                      Width="300"
+                      Style="{StaticResource ModernComboBox}"
+                      Tag="Выберите студента"
+                      DisplayMemberPath="FullName" />
+
+                <!-- Выбор курса -->
+                <TextBlock Text="Курс"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="#FF555555"
+                       HorizontalAlignment="Left"
+                       Margin="30,0,0,0" />
+                <ComboBox x:Name="cbxCourse"
+                      Width="300"
+                      Style="{StaticResource ModernComboBox}"
+                      Tag="Выберите курс"
+                      DisplayMemberPath="CourseName" />
+
+                <!-- Выбор оценки -->
+                <TextBlock Text="Оценка"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="#FF555555"
+                       HorizontalAlignment="Left"
+                       Margin="30,0,0,0" />
+                <ComboBox x:Name="cbxGrade"
+                      Width="300"
+                      Style="{StaticResource ModernComboBox}"
+                      Tag="Выберите оценку">
+                    <ComboBoxItem Content="5 - Отлично" />
+                    <ComboBoxItem Content="4 - Хорошо" />
+                    <ComboBoxItem Content="3 - Удовлетворительно" />
+                    <ComboBoxItem Content="2 - Неудовлетворительно" />
+                </ComboBox>
+
+                <!-- Кнопки -->
+                <Button x:Name="btnAssignGrade"
+                    Content="Выставить оценку"
+                    Width="300"
+                    Margin="0,20,0,0"
+                    Style="{StaticResource ModernButton}"
+                    Click="AssignGrade_Click" />
+
+                <Button Style="{StaticResource BackButtonStyle}"
+                    Content="Назад"
+                    Width="300"
+                    Margin="20,10"
+                    Click="BackButton_Click" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
