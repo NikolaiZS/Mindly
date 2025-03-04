@@ -84,7 +84,7 @@
                         Content="Зарегистрироваться"
                         Width="300"
                         Margin="0 5 0 0"
-                        Style="{StaticResource ModernButton}" />
+                        Style="{StaticResource ModernButton}" Click="btnRegister_Click" />
 
                 <TextBlock HorizontalAlignment="Center"
                            Foreground="#FF0078D4"

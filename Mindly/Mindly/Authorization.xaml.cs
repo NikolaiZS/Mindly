@@ -11,5 +11,12 @@ namespace Mindly
         {
             InitializeComponent();
         }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            Registration reg = new Registration();
+            reg.Show();
+            this.Close();
+        }
     }
 }

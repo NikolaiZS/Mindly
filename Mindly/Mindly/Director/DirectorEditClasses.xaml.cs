@@ -23,5 +23,12 @@ namespace Mindly.Director
         {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            DirectorMainWindow dmw = new DirectorMainWindow();
+            dmw.Show();
+            this.Close();
+        }
     }
 }

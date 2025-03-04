@@ -11,5 +11,12 @@ namespace Mindly.Administrator
         {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminMainWindow amw = new AdminMainWindow();
+            amw.Show();
+            this.Close();
+        }
     }
 }
