@@ -12,23 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Mindly.Administrator
+namespace Mindly.Student
 {
     /// <summary>
-    /// Логика взаимодействия для AdminResetPass.xaml
+    /// Логика взаимодействия для StudentTheoryWindow.xaml
     /// </summary>
-    public partial class AdminPasswordReset : Window
+    public partial class StudentTheoryWindow : Window
     {
-        public AdminPasswordReset()
+        public StudentTheoryWindow()
         {
             InitializeComponent();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            AdminMainWindow amw = new AdminMainWindow();
-            amw.Show();
-            this.Close();
         }
     }
 }

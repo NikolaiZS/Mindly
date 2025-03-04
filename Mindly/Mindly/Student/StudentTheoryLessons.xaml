@@ -80,8 +80,8 @@
                             <DataTemplate>
                                 <Button Content="📄"
                                         Style="{StaticResource GridActionButton}"
-                                        Tag="Скачать материалы"
-                                        Click="DownloadMaterials_Click" />
+                                        Tag="Открыть материалы"
+                                        Click="OpenMaterials_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

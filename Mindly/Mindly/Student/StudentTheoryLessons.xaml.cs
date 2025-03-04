@@ -23,5 +23,13 @@ namespace Mindly.Student
         {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void OpenMaterials_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
