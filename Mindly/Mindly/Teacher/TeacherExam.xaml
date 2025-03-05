@@ -41,19 +41,6 @@
                     Width="300"
                     Style="{StaticResource ModernTextBox}"
                     Tag="Введите название экзамена" />
-                <TextBlock Text="Тип"
-                       FontSize="14"
-                       FontWeight="SemiBold"
-                       Foreground="#FF555555"
-                       HorizontalAlignment="Left"
-                       Margin="30,0,0,0" />
-                <ComboBox x:Name="cbxExamType"
-                      Width="300"
-                      Style="{StaticResource ModernComboBox}"
-                      Tag="Выберите тип">
-                    <ComboBoxItem Content="Экзамен" />
-                    <ComboBoxItem Content="Зачет" />
-                </ComboBox>
                 <TextBlock Text="Дата"
                        FontSize="14"
                        FontWeight="SemiBold"

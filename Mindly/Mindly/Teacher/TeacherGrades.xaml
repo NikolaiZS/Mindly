@@ -59,10 +59,10 @@
                       Width="300"
                       Style="{StaticResource ModernComboBox}"
                       Tag="Выберите оценку">
-                    <ComboBoxItem Content="5 - Отлично" />
-                    <ComboBoxItem Content="4 - Хорошо" />
-                    <ComboBoxItem Content="3 - Удовлетворительно" />
-                    <ComboBoxItem Content="2 - Неудовлетворительно" />
+                    <ComboBoxItem Content="2" />
+                    <ComboBoxItem Content="3" />
+                    <ComboBoxItem Content="4" />
+                    <ComboBoxItem Content="5" />
                 </ComboBox>
 
                 <!-- Кнопки -->

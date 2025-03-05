@@ -8,6 +8,7 @@ using Supabase.Gotrue;
 using Supabase.Interfaces;
 using static Mindly.Student.StudentGrades;
 using Mindly.Teacher;
+using System.Diagnostics;
 
 namespace Mindly
 {
@@ -311,6 +312,41 @@ namespace Mindly
                 .ToList();
 
             return testResults;
+        }
+
+        public async Task<bool> AddGradeAsync(int studentId, int courseId, int gradeValue)
+        {
+            Debug.WriteLine('1');
+            var client = App.SupabaseService.GetClient();
+            Debug.WriteLine('1');
+            try
+            {
+                Debug.WriteLine('1');
+                // Создаем новую запись в таблице grades
+                var grade = new Grades
+                {
+                    student_id = studentId,
+                    course_id = courseId,
+                    grade = gradeValue,
+                    created_at = DateTime.UtcNow,
+                    updated_at = DateTime.UtcNow
+                };
+                Debug.WriteLine('1');
+                // Вставляем запись в таблицу
+                var response = await client
+                    .From<Grades>()
+                    .Insert(grade);
+                Debug.WriteLine('1');
+                // Проверяем успешность операции
+                return response.ResponseMessage.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("11");
+                // Логируем ошибку
+                Debug.WriteLine($"Ошибка при добавлении оценки: {ex.Message}");
+                return false;
+            }
         }
     }
 }

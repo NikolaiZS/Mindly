@@ -10,7 +10,7 @@ namespace Mindly.Models
         public int id { get; set; }
 
         [Column("student_id")]
-        public int studnt_id { get; set; }
+        public int student_id { get; set; }
 
         [Column("course_id")]
         public int course_id { get; set; }

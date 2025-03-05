@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mindly.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,14 +23,129 @@ namespace Mindly.Teacher
         public TeacherExam()
         {
             InitializeComponent();
+            Loaded += TeacherExam_Loaded;
+        }
+
+        private async void TeacherExam_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadCoursesAsync();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            TeacherMainMenu tmm = new TeacherMainMenu();
+            tmm.Show();
+            this.Close();
         }
 
-        private void AssignExam_Click(object sender, RoutedEventArgs e)
+        private async void AssignExam_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                // Получаем выбранный курс
+                var selectedCourseId = cbxCourse.SelectedValue?.ToString();
+                if (string.IsNullOrEmpty(selectedCourseId))
+                {
+                    MessageBox.Show("Выберите курс.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Получаем название экзамена
+                var examName = txtExamName.Text;
+                if (string.IsNullOrEmpty(examName))
+                {
+                    MessageBox.Show("Введите название экзамена.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Получаем дату экзамена
+                if (dpExamDate.SelectedDate == null)
+                {
+                    MessageBox.Show("Выберите дату экзамена.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                var examDate = dpExamDate.SelectedDate.Value;
+
+                // Получаем ссылку на конференцию
+                var conferenceLink = txtConferenceLink.Text;
+                if (string.IsNullOrEmpty(conferenceLink))
+                {
+                    MessageBox.Show("Введите ссылку на конференцию.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Получаем клиент Supabase
+                var client = App.SupabaseService.GetClient();
+
+                // Создаем новую запись в таблице exams
+                var exam = new Exams
+                {
+                    teacher_id = CurrentUser.CurrentUserId,
+                    course_id = int.Parse(selectedCourseId),
+                    title = examName,
+                    date = examDate,
+                    description = conferenceLink
+                };
+
+                // Вставляем запись в таблицу
+                var response = await client
+                    .From<Exams>()
+                    .Insert(exam);
+
+                if (response.ResponseMessage.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Экзамен успешно назначен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось назначить экзамен.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при назначении экзамена: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Метод для очистки формы
+        private void ClearForm()
+        {
+            cbxCourse.SelectedIndex = -1;
+            txtExamName.Clear();
+            dpExamDate.SelectedDate = null;
+            txtConferenceLink.Clear();
+        }
+
+        private async Task LoadCoursesAsync()
+        {
+            try
+            {
+                // Получаем клиент Supabase
+                var client = App.SupabaseService.GetClient();
+
+                // Получаем все курсы
+                var response = await client
+                    .From<Courses>()
+                    .Select("id, name")
+                    .Get();
+
+                // Преобразуем данные в список для ComboBox
+                var courses = response.Models?.Select(c => new
+                {
+                    Id = c.id, // Используем Id как значение
+                    Name = c.name // Отображаем название курса
+                }).ToList();
+
+                // Привязываем данные к ComboBox
+                cbxCourse.ItemsSource = courses;
+                cbxCourse.DisplayMemberPath = "Name"; // Отображаем название курса
+                cbxCourse.SelectedValuePath = "Id"; // Используем Id как значение
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке курсов: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
