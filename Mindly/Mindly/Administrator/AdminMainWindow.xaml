@@ -34,17 +34,17 @@
                                    Foreground="#FF0078D4"
                                    Margin="0,0,0,10" />
                         <Button x:Name="EditUsersButton"
-                                Content="Изменение пользователей"
-                                Style="{StaticResource MenuButton}" />
+                                Content="Редактирование пользователей"
+                                Style="{StaticResource MenuButton}" Click="EditUsersButton_Click" />
                         <Button x:Name="AssignManagersButton"
                                 Content="Назначение руководителей"
-                                Style="{StaticResource MenuButton}" />
+                                Style="{StaticResource MenuButton}" Click="AssignManagersButton_Click" />
                         <Button x:Name="RegisterNewUsersButton"
                                 Content="Регистрация новых пользователей"
-                                Style="{StaticResource MenuButton}" />
+                                Style="{StaticResource MenuButton}" Click="RegisterNewUsersButton_Click" />
                         <Button x:Name="ResetPasswordsButton"
                                 Content="Сброс паролей"
-                                Style="{StaticResource MenuButton}" />
+                                Style="{StaticResource MenuButton}" Click="ResetPasswordsButton_Click" />
                     </StackPanel>
                 </Border>
             </StackPanel>

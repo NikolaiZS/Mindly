@@ -72,30 +72,9 @@
                     <DataGridTextColumn Header="Преподаватель"
                                       Width="1.5*"
                                       Binding="{Binding Instructor}" />
-                    <DataGridTextColumn Header="Дата и время"
+                    <DataGridTextColumn Header="Дата"
                                       Width="1.5*"
-                                      Binding="{Binding DateTime}" />
-                    <DataGridTextColumn Header="Продолжительность"
-                                      Width="1*"
-                                      Binding="{Binding Duration}" />
-                    <DataGridTextColumn Header="Статус"
-                                      Width="0.8*"
-                                      Binding="{Binding Status}" />
-                    <DataGridTemplateColumn Header="Действия" Width="1*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Content="✎"
-                                            Style="{StaticResource GridActionButton}"
-                                            Tag="Редактировать"
-                                            Margin="0,0,5,0" />
-                                    <Button Content="🗑"
-                                            Style="{StaticResource GridActionButton}"
-                                            Tag="Удалить" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                                      Binding="{Binding Date, StringFormat=dd.MM.yyyy HH:mm}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
@@ -105,7 +84,8 @@
                 HorizontalAlignment="Stretch"
                 Margin="10 5 0 0"
                 Grid.Row="2"
-                Grid.Column="0" />
+                Grid.Column="0"
+                Click="btnUpdateList_Click" />
         <Button x:Name="btnEdit"
                 Content="Изменить"
                 Style="{StaticResource ModernButton}"
@@ -113,7 +93,8 @@
                 Margin="5 5 5 0"
                 Background="#FF007BFF"
                 Grid.Row="2"
-                Grid.Column="1" />
+                Grid.Column="1"
+                Click=" btnEdit_Click" />
         <Button x:Name="btnSave"
                 Content="Сохранить"
                 Style="{StaticResource ModernButton}"
@@ -121,6 +102,7 @@
                 Margin="0 5 10 0"
                 Background="#FF28A745"
                 Grid.Row="2"
-                Grid.Column="2" />
+                Grid.Column="2"
+                Click="btnSave_Click" />
     </Grid>
 </Window>

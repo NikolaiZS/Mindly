@@ -27,7 +27,7 @@
             <Button x:Name="btnAppointDirector"
                     Content="Назначить руководителем"
                     Width="300"
-                    Style="{StaticResource ModernButton}" />
+                    Style="{StaticResource ModernButton}" Click="btnAppointDirector_Click" />
             <Button Style="{StaticResource BackButtonStyle}"
                     Content="Назад"
                     Width="300"

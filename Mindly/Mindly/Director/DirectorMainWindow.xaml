@@ -36,10 +36,10 @@
                                Margin="0,0,0,10" />
                         <Button x:Name="AssignTeacherToStudentButton"
                                 Content="Закрепить учителя за студентом"
-                                Style="{StaticResource MenuButton}" />
+                                Style="{StaticResource MenuButton}" Click="AssignTeacherToStudentButton_Click" />
                         <Button x:Name="EditLessonsButton"
                                 Content="Редактирование занятий"
-                                Style="{StaticResource MenuButton}" />
+                                Style="{StaticResource MenuButton}" Click="EditLessonsButton_Click" />
                     </StackPanel>
                 </Border>
             </StackPanel>

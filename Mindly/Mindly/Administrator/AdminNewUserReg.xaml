@@ -84,7 +84,7 @@
                         Content="Зарегистрировать пользователя"
                         Width="300"
                         Margin="0 5 0 0"
-                        Style="{StaticResource ModernButton}" />
+                        Style="{StaticResource ModernButton}" Click="btnRegister_Click" />
                 <Button Style="{StaticResource BackButtonStyle}"
                         Content="Назад"
                         Width="300"

@@ -29,5 +29,7 @@ namespace Mindly.Models
 
         [Column("updated_at")]
         public DateTime updated_at { get; set; }
+
+        public string teacher_name { get; set; }
     }
 }

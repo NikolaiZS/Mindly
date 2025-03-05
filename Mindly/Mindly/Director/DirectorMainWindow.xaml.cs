@@ -27,5 +27,19 @@ namespace Mindly.Director
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void AssignTeacherToStudentButton_Click(object sender, RoutedEventArgs e)
+        {
+            DirectorAssignTeacherToStudent datts = new DirectorAssignTeacherToStudent();
+            datts.Show();
+            this.Close();
+        }
+
+        private void EditLessonsButton_Click(object sender, RoutedEventArgs e)
+        {
+            DirectorEditClasses dec = new DirectorEditClasses();
+            dec.Show();
+            this.Close();
+        }
     }
 }

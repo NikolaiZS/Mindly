@@ -43,7 +43,7 @@
             <Button x:Name="btnResetPassword"
                     Content="Сбросить пароль"
                     Width="300"
-                    Style="{StaticResource ModernButton}" />
+                    Style="{StaticResource ModernButton}" Click="btnResetPassword_Click" />
             <Button Style="{StaticResource BackButtonStyle}"
                     Content="Назад"
                     Width="300"

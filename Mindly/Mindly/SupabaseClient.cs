@@ -68,38 +68,50 @@ namespace Mindly
 
                 if (insertResponse.ResponseMessage.IsSuccessStatusCode)
                 {
-                    var newUser = insertResponse.Models.FirstOrDefault();
-                    if (newUser == null)
+                    Debug.WriteLine("первый иф");
+                    if (user.role_id == 1)
                     {
-                        throw new Exception("Не удалось получить ID нового пользователя.");
+                        Debug.WriteLine("второй иф");
+                        var newUser = insertResponse.Models.FirstOrDefault();
+                        if (newUser == null)
+                        {
+                            Debug.WriteLine("1");
+                            throw new Exception("Не удалось получить ID нового пользователя.");
+                        }
+
+                        // Шаг 2: Назначение курса студенту в таблице Assignments
+                        var assignment = new Assignments
+                        {
+                            student_id = newUser.id,
+                            course_id = courseId,
+                            teacher_id = teacher_id
+                        };
+
+                        var assignmentResponse = await client
+                            .From<Assignments>()
+                            .Insert(assignment);
+
+                        if (!assignmentResponse.ResponseMessage.IsSuccessStatusCode)
+                        {
+                            Debug.WriteLine("2");
+                            throw new Exception("Не удалось назначить курс студенту.");
+                        }
+                        Debug.WriteLine("3");
+                        MessageBox.Show("Студент успешно зарегистрирован и курс назначен.");
                     }
 
-                    // Шаг 2: Назначение курса студенту в таблице Assignments
-                    var assignment = new Assignments
-                    {
-                        student_id = newUser.id,
-                        course_id = courseId,
-                        teacher_id = teacher_id
-                    };
-
-                    var assignmentResponse = await client
-                        .From<Assignments>()
-                        .Insert(assignment);
-
-                    if (!assignmentResponse.ResponseMessage.IsSuccessStatusCode)
-                    {
-                        throw new Exception("Не удалось назначить курс студенту.");
-                    }
-
-                    MessageBox.Show("Студент успешно зарегистрирован и курс назначен.");
+                    Debug.WriteLine("5");
+                    MessageBox.Show("Пользователь успешно зарегистрирован.");
                 }
                 else
                 {
+                    Debug.WriteLine("4");
                     throw new Exception("Не удалось зарегистрировать пользователя.");
                 }
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("6");
                 MessageBox.Show($"Ошибка: {ex.Message}");
                 throw; // Повторно выбрасываем исключение для обработки на уровне выше
             }
@@ -118,6 +130,17 @@ namespace Mindly
             return response.Models?.ToList() ?? new List<Courses>();
         }
 
+        public async Task<List<Roles>> GetRolesAsync()
+        {
+            var client = App.SupabaseService.GetClient();
+
+            var response = await client
+                .From<Roles>()
+                .Select("id,name")
+                .Get();
+            return response.Models?.ToList() ?? new List<Roles>();
+        }
+
         public async Task LoginAsync(string username, string password)
         {
             var client = App.SupabaseService.GetClient();
@@ -127,7 +150,7 @@ namespace Mindly
                 // Получаем информацию о пользователе из таблицы Users
                 var userResponse = await client
                     .From<Users>()
-                    .Select("id, role_id")
+                    .Select("id, role_id, password")
                     .Filter("username", Supabase.Postgrest.Constants.Operator.Equals, username)
                     .Single();
 
@@ -137,13 +160,20 @@ namespace Mindly
                     return;
                 }
 
-                // Получаем роль пользователя
-                var roleId = userResponse.role_id;
+                if (userResponse.password == password)
+                {
+                    // Получаем роль пользователя
+                    var roleId = userResponse.role_id;
 
-                CurrentUser.CurrentUserId = userResponse.id;
+                    CurrentUser.CurrentUserId = userResponse.id;
 
-                // Открываем соответствующее окно в зависимости от роли
-                OpenRoleBasedWindow(roleId);
+                    // Открываем соответствующее окно в зависимости от роли
+                    OpenRoleBasedWindow(roleId);
+                }
+                else
+                {
+                    throw new Exception("Неверный пароль");
+                }
             }
             catch (Exception ex)
             {

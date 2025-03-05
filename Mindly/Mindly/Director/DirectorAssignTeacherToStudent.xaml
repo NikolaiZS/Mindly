@@ -44,7 +44,7 @@
             <Button x:Name="btnAssign"
                 Content="Закрепить"
                 Width="300"
-                Style="{StaticResource ModernButton}" />
+                Style="{StaticResource ModernButton}" Click="btnAssign_Click" />
             <Button Style="{StaticResource BackButtonStyle}"
                 Content="Назад"
                 Width="300"
