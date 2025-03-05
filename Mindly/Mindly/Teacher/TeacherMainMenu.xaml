@@ -14,12 +14,19 @@
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="20">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource BackButtonStyle}"
+                            Content="Выйти"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            Click="ExitButton_Click" />
+                </StackPanel>
                 <TextBlock Text="Панель преподавателя"
                            FontSize="28"
                            FontWeight="SemiBold"
                            Foreground="#FF333333"
                            HorizontalAlignment="Center"
-                           Margin="0,0,0,30" />
+                           Margin="0,-50,0,0" />
                 <Border Background="White" Padding="15" CornerRadius="8">
                     <StackPanel>
                         <TextBlock Text="Управление учебным процессом"
