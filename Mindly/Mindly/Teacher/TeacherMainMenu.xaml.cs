@@ -41,5 +41,12 @@ namespace Mindly.Teacher
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void AssignTestsButton_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherTestMainMenu ttmm = new TeacherTestMainMenu();
+            ttmm.Show();
+            this.Close();
+        }
     }
 }

@@ -45,7 +45,7 @@
 
                         <Button x:Name="AssignTestsButton"
                                 Content="Назначение тестов"
-                                Style="{StaticResource MenuButton}" />
+                                Style="{StaticResource MenuButton}" Click="AssignTestsButton_Click" />
                     </StackPanel>
                 </Border>
             </StackPanel>
