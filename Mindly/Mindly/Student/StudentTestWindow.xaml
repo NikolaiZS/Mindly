@@ -1,0 +1,77 @@
+﻿<Window x:Class="Mindly.Student.StudentTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Mindly - Прохождение теста"
+        Height="500"
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#FFF5F5F5">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок теста -->
+        <StackPanel Grid.Row="0">
+            <TextBlock x:Name="tbQuestionNumber"
+                     FontSize="18"
+                     FontWeight="SemiBold"
+                     Foreground="#FF333333" />
+            <TextBlock x:Name="tbQuestionTitle"
+                     FontSize="16"
+                     Margin="0,5"
+                     Foreground="#FF555555" />
+        </StackPanel>
+
+        <!-- Вопрос и варианты ответов -->
+        <StackPanel Grid.Row="1" Margin="0,20">
+            <TextBlock x:Name="tbQuestionText"
+                     FontSize="16"
+                     TextWrapping="Wrap"
+                     Margin="0,0,0,20" />
+
+            <UniformGrid Columns="2" Rows="2">
+                <Button x:Name="btnAnswer1"
+                      Style="{StaticResource ModernButton}"
+                      Margin="5"
+                      Click="Answer_Click" />
+                <Button x:Name="btnAnswer2"
+                      Style="{StaticResource ModernButton}"
+                      Margin="5"
+                      Click="Answer_Click" />
+                <Button x:Name="btnAnswer3"
+                      Style="{StaticResource ModernButton}"
+                      Margin="5"
+                      Click="Answer_Click" />
+                <Button x:Name="btnAnswer4"
+                      Style="{StaticResource ModernButton}"
+                      Margin="5"
+                      Click="Answer_Click" />
+            </UniformGrid>
+        </StackPanel>
+
+        <!-- Панель результата -->
+        <TextBlock x:Name="tbScore"
+                 Grid.Row="2"
+                 Text="Оценка: 0"
+                 FontSize="16"
+                 Foreground="#FF28A745"
+                 Visibility="Collapsed"
+                 HorizontalAlignment="Center" />
+        <Button x:Name="buttonScoreExit"
+                Style="{StaticResource BackButtonStyle}"
+                Grid.Row="3"
+                Content="Назад"
+                Visibility="Collapsed"
+                VerticalAlignment="Bottom"
+                Click="BackButton_Click" />
+    </Grid>
+</Window>

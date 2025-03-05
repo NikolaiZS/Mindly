@@ -23,5 +23,9 @@ namespace Mindly.Director
         {
             InitializeComponent();
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

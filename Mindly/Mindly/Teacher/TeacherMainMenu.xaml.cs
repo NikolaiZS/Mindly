@@ -37,5 +37,9 @@ namespace Mindly.Teacher
             te.Show();
             this.Close();
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

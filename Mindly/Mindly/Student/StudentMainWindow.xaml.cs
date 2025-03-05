@@ -51,5 +51,9 @@ namespace Mindly.Student
             str.Show();
             this.Close();
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
