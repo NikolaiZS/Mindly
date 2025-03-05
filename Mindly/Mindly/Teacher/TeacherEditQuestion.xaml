@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Mindly - Редактор вопроса"
-        Height="500"
+        Height="750"
         Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
@@ -16,7 +16,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Заголовок -->
@@ -52,6 +54,7 @@
 
         <TextBox x:Name="txtQuestion"
                  Style="{StaticResource ModernTextBox}"
+                 VerticalContentAlignment="Top"
                  Tag="Введите текст вопроса"
                  AcceptsReturn="True"
                  TextWrapping="Wrap"
@@ -59,20 +62,56 @@
                  VerticalScrollBarVisibility="Auto"
                  Grid.Row="2" />
 
-        <Button Content="Сохранить"
-                Style="{StaticResource ModernButton}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                Margin="0,0,0,45"
-                Click="Save_Click"
-                Grid.Row="3" />
+        <!-- Варианты ответов -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,20">
+            <TextBlock Text="Варианты ответов"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="#FF555555"
+                       Margin="0,0,0,10" />
 
-        <Button Content="Назад"
-                Style="{StaticResource BackButtonStyle}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                Margin="0,0,0,0"
-                Click="BackButton_Click"
-                Grid.Row="3" Cursor="Hand" />
+            <ItemsControl x:Name="AnswersItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,0,0,10"
+                                Background="White"
+                                CornerRadius="5"
+                                Padding="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Text="{Binding Text}"
+                                         Style="{StaticResource ModernTextBox}"
+                                         Tag="Вариант ответа"
+                                         Margin="20,0,5,0" />
+
+                                <RadioButton Grid.Column="1"
+                                             IsChecked="{Binding IsCorrect}"
+                                             GroupName="CorrectAnswer"
+                                             VerticalAlignment="Center"
+                                             ToolTip="Правильный ответ" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Сохранить"
+                    Style="{StaticResource ModernButton}"
+                    Width="260"
+                    Margin="0,0,0,0"
+                    Click="Save_Click" />
+
+            <Button Content="Назад"
+                    Style="{StaticResource BackButtonStyle}"
+                    Width="260"
+                    Click="BackButton_Click" />
+        </StackPanel>
     </Grid>
 </Window>

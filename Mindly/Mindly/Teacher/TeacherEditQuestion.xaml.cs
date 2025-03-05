@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,26 +22,64 @@ namespace Mindly.Teacher
     /// </summary>
     public partial class TeacherEditQuestion : Window
     {
+        public ObservableCollection<Answer> Answers { get; } = new ObservableCollection<Answer>();
+
         public TeacherEditQuestion()
         {
             InitializeComponent();
+            AnswersItemsControl.ItemsSource = Answers;
+            AddDefaultAnswers();
         }
 
-        public TeacherEditQuestion(string title, string question) : this()
+        private void AddDefaultAnswers()
         {
-            txtTitle.Text = title;
-            txtQuestion.Text = question;
+            for (int i = 0; i < 4; i++)
+            {
+                Answers.Add(new Answer { Text = $"Вариант {i + 1}" });
+            }
         }
 
-        public string QuestionTitle => txtTitle.Text;
-        public string QuestionText => txtQuestion.Text;
+        public class Answer : INotifyPropertyChanged
+        {
+            private string _text;
+            private bool _isCorrect;
+
+            public string Text
+            {
+                get => _text;
+                set { _text = value; OnPropertyChanged(); }
+            }
+
+            public bool IsCorrect
+            {
+                get => _isCorrect;
+                set { _isCorrect = value; OnPropertyChanged(); }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        private void AddAnswer_Click(object sender, RoutedEventArgs e)
+        {
+            Answers.Add(new Answer { Text = "Новый вариант" });
+        }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
-               string.IsNullOrWhiteSpace(txtQuestion.Text))
+            if (Answers.Count(a => a.IsCorrect) == 0)
             {
-                MessageBox.Show("Заполните все обязательные поля!");
+                MessageBox.Show("Выберите хотя бы один правильный ответ!");
+                return;
+            }
+
+            if (Answers.Any(a => string.IsNullOrWhiteSpace(a.Text)))
+            {
+                MessageBox.Show("Все варианты ответов должны быть заполнены!");
                 return;
             }
 
