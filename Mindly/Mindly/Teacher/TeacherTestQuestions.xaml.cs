@@ -32,12 +32,27 @@ namespace Mindly.Teacher
             {
             new
             {
-                QuestionText = "Что такое ООП?",
-                Type = "Текстовый ответ"
+                QuestionText = "Вопрос 1",
+                Type = "Множественный выбор"
             },
             new
             {
-                QuestionText = "Выберите правильные варианты ответа:",
+                QuestionText = "Вопрос 2",
+                Type = "Множественный выбор"
+            },
+            new
+            {
+                QuestionText = "Вопрос 3",
+                Type = "Множественный выбор"
+            },
+            new
+            {
+                QuestionText = "Вопрос 4",
+                Type = "Множественный выбор"
+            },
+            new
+            {
+                QuestionText = "Вопрос 5",
                 Type = "Множественный выбор"
             }
         };
@@ -63,7 +78,9 @@ namespace Mindly.Teacher
         {
             var button = (Button)sender;
             dynamic question = button.DataContext;
-            // Логика редактирования вопроса
+            TeacherEditQuestion teq = new TeacherEditQuestion();
+            teq.Show();
+            this.Close();
         }
 
         private void DeleteQuestion_Click(object sender, RoutedEventArgs e)
@@ -78,6 +95,8 @@ namespace Mindly.Teacher
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            TeacherTestMainMenu ttmm = new TeacherTestMainMenu();
+            ttmm.Show();
             this.Close();
         }
     }

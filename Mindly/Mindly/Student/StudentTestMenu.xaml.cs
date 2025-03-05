@@ -52,12 +52,9 @@ namespace Mindly.Student
         // Пример ну ты понял работай давай
         private void StartTest_Click(object sender, RoutedEventArgs e)
         {
-            //var selectedTest = (sender as Button)?.DataContext as Test;
-            //if (selectedTest != null)
-            //{
-            //    var testWindow = new StudentTestWindow(selectedTest);
-            //    testWindow.ShowDialog();
-            //}
+            StudentTestWindow stw = new StudentTestWindow();
+            stw.Show();
+            this.Close();
         }
     }
 

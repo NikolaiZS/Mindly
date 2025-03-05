@@ -42,7 +42,6 @@ namespace Mindly.Teacher
         {
             try
             {
-                // Получаем выбранный курс
                 var selectedCourseId = cbxCourse.SelectedValue?.ToString();
                 if (string.IsNullOrEmpty(selectedCourseId))
                 {
@@ -50,7 +49,6 @@ namespace Mindly.Teacher
                     return;
                 }
 
-                // Получаем название экзамена
                 var examName = txtExamName.Text;
                 if (string.IsNullOrEmpty(examName))
                 {
@@ -58,7 +56,6 @@ namespace Mindly.Teacher
                     return;
                 }
 
-                // Получаем дату экзамена
                 if (dpExamDate.SelectedDate == null)
                 {
                     MessageBox.Show("Выберите дату экзамена.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -66,7 +63,6 @@ namespace Mindly.Teacher
                 }
                 var examDate = dpExamDate.SelectedDate.Value;
 
-                // Получаем ссылку на конференцию
                 var conferenceLink = txtConferenceLink.Text;
                 if (string.IsNullOrEmpty(conferenceLink))
                 {
@@ -74,10 +70,8 @@ namespace Mindly.Teacher
                     return;
                 }
 
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Создаем новую запись в таблице exams
                 var exam = new Exams
                 {
                     teacher_id = CurrentUser.CurrentUserId,
@@ -87,7 +81,6 @@ namespace Mindly.Teacher
                     description = conferenceLink
                 };
 
-                // Вставляем запись в таблицу
                 var response = await client
                     .From<Exams>()
                     .Insert(exam);
@@ -108,7 +101,6 @@ namespace Mindly.Teacher
             }
         }
 
-        // Метод для очистки формы
         private void ClearForm()
         {
             cbxCourse.SelectedIndex = -1;

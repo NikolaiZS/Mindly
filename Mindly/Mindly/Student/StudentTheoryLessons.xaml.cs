@@ -48,10 +48,8 @@ namespace Mindly.Student
         {
             try
             {
-                // Получаем занятия для студента
                 var lessons = await App.SupabaseService.GetStudentLessonsAsync(_studentId);
 
-                // Отображаем занятия (например, в DataGrid)
                 lessonsGrid.ItemsSource = lessons;
             }
             catch (Exception ex)

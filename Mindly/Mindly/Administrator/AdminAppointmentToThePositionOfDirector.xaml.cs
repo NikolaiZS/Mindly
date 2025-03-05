@@ -75,7 +75,6 @@ namespace Mindly.Administrator
         {
             try
             {
-                // Получаем выбранного пользователя
                 var selectedUserId = cbUsers.SelectedValue?.ToString();
                 if (string.IsNullOrEmpty(selectedUserId))
                 {
@@ -83,17 +82,14 @@ namespace Mindly.Administrator
                     return;
                 }
 
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Обновляем роль пользователя на "руководитель" (например, role_id = 3)
                 var user = new Users
                 {
                     id = int.Parse(selectedUserId),
-                    role_id = 3 // role_id = 3 для руководителя
+                    role_id = 3
                 };
 
-                // Обновляем запись в таблице users
                 var response = await client
                     .From<Users>()
                     .Where(u => u.id == user.id)

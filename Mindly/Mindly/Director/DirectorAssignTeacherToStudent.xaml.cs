@@ -106,7 +106,6 @@ namespace Mindly.Director
         {
             try
             {
-                // Получаем выбранные значения из ComboBox
                 var selectedTeacherId = cbTeacher.SelectedValue?.ToString();
                 var selectedStudentId = cbStudent.SelectedValue?.ToString();
 
@@ -119,13 +118,11 @@ namespace Mindly.Director
                 var user = new Users
                 {
                     id = int.Parse(selectedStudentId),
-                    manager_id = int.Parse(selectedTeacherId) // role_id = 3 для руководителя
+                    manager_id = int.Parse(selectedTeacherId)
                 };
 
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Обновляем manager_id у студента
                 var response = await client
                     .From<Users>()
                     .Where(u => u.id == user.id)

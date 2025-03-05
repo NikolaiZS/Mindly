@@ -38,37 +38,37 @@ namespace Mindly.Student
             new Question
             {
                 Title = "Вопрос 1",
-                Text = "Сколько будет 2 + 2?",
-                Answers = new List<string> { "3", "4", "5", "6" },
-                CorrectAnswer = "4"
+                Text = "Чему равно 15 + 7?",
+                Answers = new List<string> { "21", "22", "23", "24" },
+                CorrectAnswer = "22"
             },
             new Question
             {
                 Title = "Вопрос 2",
-                Text = "Столица Франции?",
-                Answers = new List<string> { "Лондон", "Берлин", "Париж", "Мадрид" },
-                CorrectAnswer = "Париж"
+                Text = "Чему равно 36 ÷ 6?",
+                Answers = new List<string> { "5", "6", "7", "8" },
+                CorrectAnswer = "6"
             },
             new Question
             {
                 Title = "Вопрос 3",
-                Text = "Самый большой океан?",
-                Answers = new List<string> { "Атлантический", "Индийский", "Северный Ледовитый", "Тихий" },
-                CorrectAnswer = "Тихий"
+                Text = "Чему равно 9 × 4?",
+                Answers = new List<string> { "32", "34", "36", "38" },
+                CorrectAnswer = "36"
             },
             new Question
             {
                 Title = "Вопрос 4",
-                Text = "Автор 'Преступления и наказания'?",
-                Answers = new List<string> { "Толстой", "Достоевский", "Чехов", "Гоголь" },
-                CorrectAnswer = "Достоевский"
+                Text = "Чему равно 50 - 19?",
+                Answers = new List<string> { "29", "30", "31", "32" },
+                CorrectAnswer = "31"
             },
             new Question
             {
                 Title = "Вопрос 5",
-                Text = "Химический символ золота?",
-                Answers = new List<string> { "Fe", "Cu", "Ag", "Au" },
-                CorrectAnswer = "Au"
+                Text = "Какой остаток останется при делении 17 на 5?",
+                Answers = new List<string> { "1", "2", "3", "5" },
+                CorrectAnswer = "3"
             }
         };
         }
@@ -125,7 +125,9 @@ namespace Mindly.Student
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            //
+            StudentMainWindow smw = new StudentMainWindow();
+            smw.Show();
+            this.Close();
         }
     }
 

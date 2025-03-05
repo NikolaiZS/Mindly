@@ -36,10 +36,8 @@ namespace Mindly.Student
         {
             try
             {
-                // Получаем результаты тестов для студента
                 var testResults = await App.SupabaseService.GetTestResultsForStudentAsync(_studentId);
 
-                // Привязываем данные к DataGrid
                 testResultsGrid.ItemsSource = testResults;
             }
             catch (Exception ex)

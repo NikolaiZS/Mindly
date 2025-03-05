@@ -59,8 +59,6 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding QuestionCount, StringFormat='Вопросов: {0}'}"
                                          FontSize="12" Foreground="#FF888888" />
-                                <TextBlock Text="{Binding TimeLimit, StringFormat='Время: {0} мин'}"
-                                         FontSize="12" Foreground="#FF888888" />
                             </StackPanel>
 
                             <Button Content="Изменить"

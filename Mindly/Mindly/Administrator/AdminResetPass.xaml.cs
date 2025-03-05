@@ -43,10 +43,8 @@ namespace Mindly.Administrator
         {
             try
             {
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Получаем всех пользователей
                 var response = await client
                     .From<Users>()
                     .Select("id, first_name, last_name")
@@ -59,7 +57,6 @@ namespace Mindly.Administrator
                     FullName = $"{u.first_name} {u.last_name}" // Отображаем полное имя
                 }).ToList();
 
-                // Привязываем данные к ComboBox
                 cbUsers.ItemsSource = users;
                 cbUsers.DisplayMemberPath = "FullName"; // Отображаем полное имя
                 cbUsers.SelectedValuePath = "Id"; // Используем Id как значение
@@ -74,14 +71,12 @@ namespace Mindly.Administrator
         {
             try
             {
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Обновляем пароль пользователя
                 var response = await client
                     .From<Users>()
                     .Where(u => u.id == userId)
-                    .Set(u => u.password, newPassword) // Предположим, что есть поле Password
+                    .Set(u => u.password, newPassword)
                     .Update();
 
                 if (response.ResponseMessage.IsSuccessStatusCode)
@@ -103,7 +98,6 @@ namespace Mindly.Administrator
         {
             try
             {
-                // Получаем выбранного пользователя
                 var selectedUserId = cbUsers.SelectedValue?.ToString();
                 if (string.IsNullOrEmpty(selectedUserId))
                 {
@@ -111,7 +105,6 @@ namespace Mindly.Administrator
                     return;
                 }
 
-                // Получаем новый пароль
                 var newPassword = txtNewPassword.Password;
                 if (string.IsNullOrEmpty(newPassword))
                 {
@@ -119,7 +112,6 @@ namespace Mindly.Administrator
                     return;
                 }
 
-                // Сбрасываем пароль
                 await ResetPasswordAsync(int.Parse(selectedUserId), newPassword);
             }
             catch (Exception ex)

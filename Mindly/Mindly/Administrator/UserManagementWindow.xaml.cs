@@ -34,7 +34,6 @@ namespace Mindly.Administrator
                 // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Получаем всех пользователей
                 var response = await client
                     .From<Users>()
                     .Select("id, username, password, first_name, last_name, role_id, manager_id, created_at, updated_at")
@@ -61,7 +60,6 @@ namespace Mindly.Administrator
             }
         }
 
-        // Метод для получения названия роли по ID
         private string GetRoleName(int roleId)
         {
             switch (roleId)
@@ -78,23 +76,20 @@ namespace Mindly.Administrator
         {
             try
             {
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Получаем измененные данные из DataGrid
                 var updatedUsers = usersGrid.ItemsSource as IEnumerable<UserViewModel>;
                 if (updatedUsers == null) return;
 
                 foreach (var user in updatedUsers)
                 {
-                    // Обновляем пользователя в базе данных
                     var updatedUser = new Users
                     {
                         id = user.Id,
                         first_name = user.FirstName,
                         last_name = user.LastName,
                         username = user.Username,
-                        role_id = GetRoleId(user.Role) // Получаем ID роли по названию
+                        role_id = GetRoleId(user.Role)
                     };
 
                     var response = await client
@@ -120,7 +115,6 @@ namespace Mindly.Administrator
             }
         }
 
-        // Метод для получения ID роли по названию
         private int GetRoleId(string roleName)
         {
             switch (roleName)
@@ -135,7 +129,6 @@ namespace Mindly.Administrator
 
         private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем выбранного пользователя
             var selectedUser = usersGrid.SelectedItem as UserViewModel;
             if (selectedUser == null)
             {
@@ -143,23 +136,20 @@ namespace Mindly.Administrator
                 return;
             }
 
-            // Подтверждение удаления
             var result = MessageBox.Show("Вы уверены, что хотите удалить этого пользователя?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes) return;
 
             try
             {
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Удаляем пользователя
                 await client
                     .From<Users>()
                     .Where(u => u.id == selectedUser.Id)
                     .Delete();
 
                 MessageBox.Show("Пользователь успешно удален.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                await LoadUsersAsync(); // Обновляем список пользователей
+                await LoadUsersAsync();
             }
             catch (Exception ex)
             {

@@ -54,6 +54,10 @@ namespace Mindly.Student
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
+            CurrentUser.CurrentUserId = -1;
+            Authorization auth = new Authorization();
+            auth.Show();
+            this.Close();
         }
     }
 }

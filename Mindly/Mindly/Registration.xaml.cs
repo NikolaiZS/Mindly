@@ -25,27 +25,22 @@ namespace Mindly
         {
             try
             {
-                // Получаем список курсов
                 var courses = await App.SupabaseService.GetCoursesAsync();
 
-                // Очищаем ComboBox перед заполнением
                 cbxSelectCourse.Items.Clear();
 
-                // Заполняем ComboBox
                 foreach (var course in courses)
                 {
-                    // Добавляем каждый курс в ComboBox
                     cbxSelectCourse.Items.Add(new ComboBoxItem
                     {
-                        Content = course.name, // Отображаемое имя
-                        Tag = course.id       // ID курса (хранится в Tag)
+                        Content = course.name,
+                        Tag = course.id
                     });
                 }
 
-                // Устанавливаем подсказку (если нужно)
                 if (cbxSelectCourse.Items.Count > 0)
                 {
-                    cbxSelectCourse.SelectedIndex = 0; // Выбираем первый элемент по умолчанию
+                    cbxSelectCourse.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)

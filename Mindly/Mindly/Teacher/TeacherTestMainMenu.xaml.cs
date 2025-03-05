@@ -37,16 +37,8 @@ namespace Mindly.Teacher
             {
                 Title = "Основы математики",
                 Description = "Тест по базовым операциям",
-                QuestionCount = 15,
-                TimeLimit = 30
+                QuestionCount = 5
             },
-            new
-            {
-                Title = "История Древнего мира",
-                Description = "Тест по древним цивилизациям",
-                QuestionCount = 20,
-                TimeLimit = 45
-            }
         };
 
             TestsList.ItemsSource = tests;
@@ -77,6 +69,8 @@ namespace Mindly.Teacher
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            TeacherMainMenu mainMenu = new TeacherMainMenu();
+            mainMenu.Show();
             this.Close();
         }
     }

@@ -81,14 +81,5 @@
                 Margin="10 5 0 0"
                 Grid.Row="2"
                 Grid.Column="0" />
-
-        <Button x:Name="btnOpen"
-                Content="Открыть"
-                Style="{StaticResource ModernButton}"
-                HorizontalAlignment="Stretch"
-                Margin="5 5 5 0"
-                Background="#FF17A2B8"
-                Grid.Row="2"
-                Grid.Column="2" />
     </Grid>
 </Window>

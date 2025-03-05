@@ -38,10 +38,8 @@ namespace Mindly.Student
         {
             try
             {
-                // Получаем оценки для студента
                 var grades = await App.SupabaseService.GetGradesForStudentAsync(_studentId);
 
-                // Привязываем данные к DataGrid
                 gradesGrid.ItemsSource = grades;
             }
             catch (Exception ex)

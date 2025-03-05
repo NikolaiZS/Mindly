@@ -147,7 +147,6 @@ namespace Mindly
 
             try
             {
-                // Получаем информацию о пользователе из таблицы Users
                 var userResponse = await client
                     .From<Users>()
                     .Select("id, role_id, password")
@@ -162,12 +161,10 @@ namespace Mindly
 
                 if (userResponse.password == password)
                 {
-                    // Получаем роль пользователя
                     var roleId = userResponse.role_id;
 
                     CurrentUser.CurrentUserId = userResponse.id;
 
-                    // Открываем соответствующее окно в зависимости от роли
                     OpenRoleBasedWindow(roleId);
                 }
                 else
@@ -208,10 +205,8 @@ namespace Mindly
                     return;
             }
 
-            // Закрываем текущее окно (окно авторизации)
             Application.Current.MainWindow?.Close();
 
-            // Открываем новое окно
             window.Show();
             Application.Current.MainWindow = window;
         }
@@ -222,7 +217,6 @@ namespace Mindly
 
             try
             {
-                // Шаг 1: Получаем список курсов студента
                 var assignmentsResponse = await client
                     .From<Assignments>()
                     .Select("course_id")
@@ -231,15 +225,13 @@ namespace Mindly
 
                 if (assignmentsResponse.Models == null || !assignmentsResponse.Models.Any())
                 {
-                    return new List<Lessons>(); // Если курсов нет, возвращаем пустой список
+                    return new List<Lessons>();
                 }
 
-                // Извлекаем ID курсов
                 var courseIds = assignmentsResponse.Models
                     .Select(a => a.course_id)
                     .ToList();
 
-                // Шаг 2: Получаем занятия для этих курсов
                 var lessonsResponse = await client
                     .From<Lessons>()
                     .Select("id, title, description, date, course_id")
@@ -250,9 +242,8 @@ namespace Mindly
             }
             catch (Exception ex)
             {
-                // Логируем ошибку
                 Console.WriteLine($"Ошибка при загрузке занятий: {ex.Message}");
-                throw; // Повторно выбрасываем исключение для обработки на уровне выше
+                throw;
             }
         }
 
@@ -260,7 +251,6 @@ namespace Mindly
         {
             var client = App.SupabaseService.GetClient();
 
-            // Получаем оценки студента
             var gradesResponse = await client
                 .From<Grades>()
                 .Select("id, course_id, grade, created_at")
@@ -269,16 +259,14 @@ namespace Mindly
 
             if (gradesResponse.Models == null || !gradesResponse.Models.Any())
             {
-                return new List<GradeViewModel>(); // Если оценок нет, возвращаем пустой список
+                return new List<GradeViewModel>();
             }
 
-            // Получаем ID курсов
             var courseIds = gradesResponse.Models
                 .Select(g => g.course_id)
                 .Distinct()
                 .ToList();
 
-            // Получаем названия курсов
             var coursesResponse = await client
                 .From<Courses>()
                 .Select("id, name")
@@ -287,7 +275,6 @@ namespace Mindly
 
             var courses = coursesResponse.Models?.ToDictionary(c => c.id, c => c.name) ?? new Dictionary<int, string>();
 
-            // Создаем список GradeViewModel
             var grades = gradesResponse.Models
                 .Select(g => new GradeViewModel
                 {
@@ -304,7 +291,6 @@ namespace Mindly
         {
             var client = App.SupabaseService.GetClient();
 
-            // Получаем результаты тестов студента
             var testResultsResponse = await client
                 .From<TestResults>()
                 .Select("id, test_id, score, updated_at")
@@ -313,16 +299,14 @@ namespace Mindly
 
             if (testResultsResponse.Models == null || !testResultsResponse.Models.Any())
             {
-                return new List<TestResultViewModel>(); // Если результатов нет, возвращаем пустой список
+                return new List<TestResultViewModel>();
             }
 
-            // Получаем ID тестов
             var testIds = testResultsResponse.Models
                 .Select(tr => tr.test_id)
                 .Distinct()
                 .ToList();
 
-            // Получаем названия тестов
             var testsResponse = await client
                 .From<Tests>()
                 .Select("id, title")
@@ -331,7 +315,6 @@ namespace Mindly
 
             var tests = testsResponse.Models?.ToDictionary(t => t.id, t => t.title) ?? new Dictionary<int, string>();
 
-            // Создаем список TestResultViewModel
             var testResults = testResultsResponse.Models
                 .Select(tr => new TestResultViewModel
                 {
@@ -346,13 +329,10 @@ namespace Mindly
 
         public async Task<bool> AddGradeAsync(int studentId, int courseId, int gradeValue)
         {
-            Debug.WriteLine('1');
             var client = App.SupabaseService.GetClient();
-            Debug.WriteLine('1');
+
             try
             {
-                Debug.WriteLine('1');
-                // Создаем новую запись в таблице grades
                 var grade = new Grades
                 {
                     student_id = studentId,
@@ -362,12 +342,10 @@ namespace Mindly
                     updated_at = DateTime.UtcNow
                 };
                 Debug.WriteLine('1');
-                // Вставляем запись в таблицу
                 var response = await client
                     .From<Grades>()
                     .Insert(grade);
                 Debug.WriteLine('1');
-                // Проверяем успешность операции
                 return response.ResponseMessage.IsSuccessStatusCode;
             }
             catch (Exception ex)

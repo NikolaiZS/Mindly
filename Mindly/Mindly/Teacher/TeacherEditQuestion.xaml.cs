@@ -82,9 +82,9 @@ namespace Mindly.Teacher
                 MessageBox.Show("Все варианты ответов должны быть заполнены!");
                 return;
             }
-
-            DialogResult = true;
-            Close();
+            TeacherTestQuestions ttq = new TeacherTestQuestions();
+            ttq.Show();
+            this.Close();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

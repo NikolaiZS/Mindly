@@ -26,6 +26,10 @@ namespace Mindly.Director
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
+            CurrentUser.CurrentUserId = -1;
+            Authorization auth = new Authorization();
+            auth.Show();
+            this.Close();
         }
 
         private void AssignTeacherToStudentButton_Click(object sender, RoutedEventArgs e)

@@ -69,7 +69,6 @@ namespace Mindly.Director
             {
                 var client = App.SupabaseService.GetClient();
 
-                // Загрузка занятий
                 var query = await client
                     .From<Lessons>()
                     .Select("id, title, teacher_id, date")
@@ -82,7 +81,6 @@ namespace Mindly.Director
 
                 var teachers = teachersResponse.Models?.ToDictionary(t => t.id, t => $"{t.first_name} {t.last_name}");
 
-                // Формирование данных для DataGrid
                 var lessons = query.Models?.Select(l => new LessonsViewModel
                 {
                     Id = l.id,
@@ -101,13 +99,11 @@ namespace Mindly.Director
 
         private int GetTeacherIdByName(string fullName)
         {
-            // Проверяем, есть ли преподаватель в кэше
             if (_teachersCache.TryGetValue(fullName, out int teacherId))
             {
                 return teacherId;
             }
 
-            // Если не найден, выбрасываем исключение
             throw new KeyNotFoundException($"Преподаватель '{fullName}' не найден.");
         }
 
@@ -130,10 +126,8 @@ namespace Mindly.Director
 
                 foreach (var lesson in updatedLessons)
                 {
-                    // Получаем ID преподавателя по имени
                     int teacherId = GetTeacherIdByName(lesson.Instructor);
 
-                    // Обновляем занятие
                     var updatedLesson = new LessonsViewModel
                     {
                         Id = lesson.Id,

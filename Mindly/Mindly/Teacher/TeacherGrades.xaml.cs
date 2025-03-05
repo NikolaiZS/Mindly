@@ -36,9 +36,9 @@ namespace Mindly.Teacher
 
         private async void AssignGrade_Click(object sender, RoutedEventArgs e)
         {
-            int studentId = (int)cbxStudent.SelectedValue; // ID студента
-            int courseId = (int)cbxCourse.SelectedValue;  // ID курса
-            int gradeValue = cbxGrade.SelectedIndex + 2; // Оценка
+            int studentId = (int)cbxStudent.SelectedValue;
+            int courseId = (int)cbxCourse.SelectedValue;
+            int gradeValue = cbxGrade.SelectedIndex + 2;
 
             // Выставляем оценку
             bool isSuccess = await App.SupabaseService.AddGradeAsync(studentId, courseId, gradeValue);
@@ -63,27 +63,23 @@ namespace Mindly.Teacher
         {
             try
             {
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
-                // Получаем всех пользователей с ролью "студент" (например, role_id = 1)
                 var response = await client
                     .From<Users>()
                     .Select("id, username, first_name, last_name")
-                    .Filter("role_id", Supabase.Postgrest.Constants.Operator.Equals, 1) // role_id = 1 для студентов
+                    .Filter("role_id", Supabase.Postgrest.Constants.Operator.Equals, 1)
                     .Get();
 
-                // Преобразуем данные в список для ComboBox
                 var students = response.Models?.Select(u => new
                 {
-                    Id = u.id, // Используем Id как значение
-                    FullName = $"{u.first_name} {u.last_name}" // Отображаем полное имя
+                    Id = u.id,
+                    FullName = $"{u.first_name} {u.last_name}"
                 }).ToList();
 
-                // Привязываем данные к ComboBox
                 cbxStudent.ItemsSource = students;
-                cbxStudent.DisplayMemberPath = "FullName"; // Отображаем полное имя
-                cbxStudent.SelectedValuePath = "Id"; // Используем Id как значение
+                cbxStudent.DisplayMemberPath = "FullName";
+                cbxStudent.SelectedValuePath = "Id";
             }
             catch (Exception ex)
             {
@@ -95,7 +91,6 @@ namespace Mindly.Teacher
         {
             try
             {
-                // Получаем клиент Supabase
                 var client = App.SupabaseService.GetClient();
 
                 // Получаем все курсы
@@ -104,17 +99,15 @@ namespace Mindly.Teacher
                     .Select("id, name")
                     .Get();
 
-                // Преобразуем данные в список для ComboBox
                 var courses = response.Models?.Select(c => new
                 {
-                    Id = c.id, // Используем Id как значение
-                    Name = c.name // Отображаем название курса
+                    Id = c.id,
+                    Name = c.name
                 }).ToList();
 
-                // Привязываем данные к ComboBox
                 cbxCourse.ItemsSource = courses;
-                cbxCourse.DisplayMemberPath = "Name"; // Отображаем название курса
-                cbxCourse.SelectedValuePath = "Id"; // Используем Id как значение
+                cbxCourse.DisplayMemberPath = "Name";
+                cbxCourse.SelectedValuePath = "Id";
             }
             catch (Exception ex)
             {
