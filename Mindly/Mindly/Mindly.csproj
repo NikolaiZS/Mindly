@@ -9,10 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Administrator\" />
-    <Folder Include="Director\" />
-    <Folder Include="Student\" />
-    <Folder Include="Teacher\" />
+    <PackageReference Include="Supabase" Version="1.1.1" />
   </ItemGroup>
 
 </Project>
